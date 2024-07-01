@@ -1,8 +1,8 @@
 {
   "id": "giphy-plugin",
   "name": "Giphy plugin",
-  "version": "1.0.1",
-  "minAppVersion": "1.0.1",
+  "version": "1.0.2",
+  "minAppVersion": "1.0.2",
   "description": "Plugin to search gifs on Giphy",
   "author": "Obsidian",
   "authorUrl": "https://github.com/LuCrypto",
