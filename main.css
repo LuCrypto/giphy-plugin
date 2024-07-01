@@ -1,0 +1,14 @@
+/* styles.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+#groupGif {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+#groupGif img {
+  width: 22%;
+  cursor: pointer;
+}
+/*# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsic3R5bGVzLmNzcyJdLAogICJzb3VyY2VzQ29udGVudCI6IFsiLypcblxuVGhpcyBDU1MgZmlsZSB3aWxsIGJlIGluY2x1ZGVkIHdpdGggeW91ciBwbHVnaW4sIGFuZFxuYXZhaWxhYmxlIGluIHRoZSBhcHAgd2hlbiB5b3VyIHBsdWdpbiBpcyBlbmFibGVkLlxuXG5JZiB5b3VyIHBsdWdpbiBkb2VzIG5vdCBuZWVkIENTUywgZGVsZXRlIHRoaXMgZmlsZS5cblxuKi9cblxuQHRhaWx3aW5kIGJhc2U7XG5AdGFpbHdpbmQgY29tcG9uZW50cztcbkB0YWlsd2luZCB1dGlsaXRpZXM7XG5cbiNncm91cEdpZiB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtd3JhcDogd3JhcDtcbiAgZ2FwOiAxcmVtO1xufVxuXG4jZ3JvdXBHaWYgaW1nIHtcbiAgd2lkdGg6IDIyJTtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4iXSwKICAibWFwcGluZ3MiOiAiO0FBU0E7QUFDQTtBQUNBO0FBRUE7QUFDRTtBQUNBO0FBQ0E7QUFBQTtBQUdGO0FBQ0U7QUFDQTtBQUFBOyIsCiAgIm5hbWVzIjogW10KfQo= */
