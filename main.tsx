@@ -6,6 +6,7 @@ import {
   Notice,
   Plugin,
   PluginSettingTab,
+  requestUrl,
   Setting,
 } from "obsidian";
 import React, { useEffect, useRef, useState } from "react";
@@ -98,10 +99,10 @@ async function fetchRandomGif(apiKey: string): Promise<string> {
     return "";
   }
 
-  const response = await fetch(
+  const response = await requestUrl(
     `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=&rating=g`
   );
-  const data = await response.json();
+  const data = response.json;
   return `![gif](${data.data.images.original.url})`;
 }
 
@@ -117,16 +118,18 @@ async function fetchGifs(search: string, apiKey: string): Promise<string[]> {
     return [];
   }
 
-  const response = await fetch(
+  const response = await requestUrl(
     `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${search}&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
   );
-  const data = await response.json();
+  const data = response.json;
   return data.data.map((gif: any) => gif.images.original.url);
 }
 
 class GifModalSearch extends Modal {
   onSubmit: (result: string, apiKeyValue: string) => void;
   apiKeyValue: string;
+
+  private root: ReactDOM.Root | null = null;
 
   constructor(
     app: App,
@@ -140,7 +143,10 @@ class GifModalSearch extends Modal {
 
   onOpen() {
     const { contentEl } = this;
-    ReactDOM.createRoot(contentEl).render(
+    if (!this.root) {
+      this.root = ReactDOM.createRoot(contentEl);
+    }
+    this.root.render(
       <GifComponentSearch
         onSubmit={this.onSubmit}
         closeModal={() => this.close()}
@@ -150,9 +156,11 @@ class GifModalSearch extends Modal {
   }
 
   onClose() {
+    if (this.root) {
+      this.root.unmount();
+      this.root = null;
+    }
     const { contentEl } = this;
-    const root = ReactDOM.createRoot(contentEl);
-    root.unmount();
     contentEl.empty();
   }
 }
