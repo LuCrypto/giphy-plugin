@@ -28,18 +28,14 @@ export default class Giphy extends Plugin {
   async onload() {
     await this.loadSettings();
 
-    // This adds a simple command that can be triggered anywhere
     this.addCommand({
       id: "add-random-gifs",
       name: "Add random gifs",
       editorCallback: async (editor: Editor) => {
         if (this.settings.apiKey === "") {
-          new Notice(
-            "Veuillez configurer votre clé API dans les paramètres du plugin.",
-            0
-          );
+          new Notice("Please configure your API key in the plugin settings", 0);
           (this.app as any).setting.open();
-          (this.app as any).setting.openTabById("giphy-plugin");
+          (this.app as any).setting.openTabById("giphy");
           return;
         }
         const gifUrl = await fetchRandomGif(this.settings.apiKey);
@@ -53,12 +49,9 @@ export default class Giphy extends Plugin {
       name: "Search gifs",
       editorCallback: (editor: Editor, view: MarkdownView) => {
         if (this.settings.apiKey === "") {
-          new Notice(
-            "Veuillez configurer votre clé API dans les paramètres du plugin.",
-            0
-          );
+          new Notice("Please configure your API key in the plugin settings", 0);
           (this.app as any).setting.open();
-          (this.app as any).setting.openTabById("giphy-plugin");
+          (this.app as any).setting.openTabById("giphy");
           return;
         }
         new GifModalSearch(
@@ -72,7 +65,6 @@ export default class Giphy extends Plugin {
       },
     });
 
-    // This adds a settings tab so the user can configure various aspects of the plugin
     this.addSettingTab(new GiphySettingTab(this.app, this));
   }
 
@@ -90,12 +82,9 @@ export default class Giphy extends Plugin {
 // Get a random gif from the Giphy API
 async function fetchRandomGif(apiKey: string): Promise<string> {
   if (apiKey === "") {
-    new Notice(
-      "Veuillez configurer votre clé API dans les paramètres du plugin.",
-      0
-    );
+    new Notice("Please configure your API key in the plugin settings", 0);
     (this.app as any).setting.open();
-    (this.app as any).setting.openTabById("giphy-plugin");
+    (this.app as any).setting.openTabById("giphy");
     return "";
   }
 
@@ -109,12 +98,9 @@ async function fetchRandomGif(apiKey: string): Promise<string> {
 // Get 25 gifs with a search bar
 async function fetchGifs(search: string, apiKey: string): Promise<string[]> {
   if (apiKey === "") {
-    new Notice(
-      "Veuillez configurer votre clé API dans les paramètres du plugin.",
-      0
-    );
+    new Notice("Please configure your API key in the plugin settings", 0);
     (this.app as any).setting.open();
-    (this.app as any).setting.openTabById("giphy-plugin");
+    (this.app as any).setting.openTabById("giphy");
     return [];
   }
 
@@ -176,7 +162,6 @@ const GifComponentSearch: React.FC<{
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    // Focus sur l'input dès que le composant est monté
     inputRef.current?.focus();
   }, []);
 
@@ -192,9 +177,7 @@ const GifComponentSearch: React.FC<{
 
   useEffect(() => {
     if (apiKey === "") {
-      new Notice(
-        "Veuillez configurer votre clé API dans les paramètres du plugin."
-      );
+      new Notice("Please configure your API key in the plugin settings");
       return;
     }
     fetchGifs(debouncedSearch, apiKey).then(setGifs);

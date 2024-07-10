@@ -1,9 +1,9 @@
 {
   "id": "giphy",
   "name": "Giphy",
-  "version": "1.0.5",
-  "minAppVersion": "1.0.5",
-  "description": "Plugin to search gifs on Giphy",
+  "version": "1.0.7",
+  "minAppVersion": "1.0.7",
+  "description": "Search and insert gifs in a note.",
   "author": "LuCrypto",
   "authorUrl": "https://github.com/LuCrypto",
   "fundingUrl": "https://buymeacoffee.com/lucrypto",
